@@ -1,6 +1,6 @@
 import axios from "axios";
 import applyCaseMiddleware from "axios-case-converter";
-
+import {interceptorRequest as interceptorRequestAuth} from "../../modules/auth/app/services/axiosInterseptors.ts"
 
 const baseUrl = import.meta.env.VITE_BASE_URL || "";
 
@@ -12,10 +12,7 @@ export const axiosAppInstance = applyCaseMiddleware(
 );
 
 axiosAppInstance.interceptors.request.use(async (config) => {
-    // let newConfig = interceptorRequestAuth(config);
-    //
-    // return newConfig
-    return config
+    return interceptorRequestAuth(config)
 });
 
 axiosAppInstance.interceptors.response.use(

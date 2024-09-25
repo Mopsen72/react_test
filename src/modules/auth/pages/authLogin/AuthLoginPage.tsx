@@ -10,14 +10,16 @@ import {logedIn} from "../../app/store/profileSlice.ts";
 const {Title} = Typography;
 
 const AuthLoginPage: React.FC = () => {
-    console.log("page");
 
     const dispatch = useAppDispatch();
 
     const submitForm: FormProps<TAuthCredentials>['onFinish'] = async (formValue: TAuthCredentials) => {
         try {
             const response = await auth(formValue);
-            dispatch(logedIn, response);
+            if (response.status === 200) {
+                dispatch(logedIn(response.data));
+            }
+
         } catch (e) {
             console.error(e);
         }
@@ -34,7 +36,7 @@ const AuthLoginPage: React.FC = () => {
                       onFinish={submitForm}>
                     <Form.Item<TAuthCredentials>
                         label="Логин или email"
-                        name="loginOrEmail"
+                        name="email"
                         style={{width: "100%"}}
                         rules={[{
                             required: true,

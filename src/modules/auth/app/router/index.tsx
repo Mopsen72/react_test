@@ -5,11 +5,11 @@ import {RouteObject} from "react-router-dom";
 export const router: RouteObject[] =
     [{
         path: "/auth",
-        element: AuthLayout(),
+        element: <AuthLayout/>,
         children: [
             {
                 index: true,
-                element: AuthLoginPage(),
+                element: <AuthLoginPage/>,
             }
         ]
     },

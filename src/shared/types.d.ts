@@ -10,3 +10,4 @@ export type TProfile = {
     whoCreated?: string | number,
     whoCpdated?: string | number,
 }
+

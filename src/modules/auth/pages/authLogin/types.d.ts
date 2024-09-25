@@ -1,4 +1,4 @@
 export type TAuthCredentials = {
-    loginOrEmail?: string,
+    email?: string,
     password?: string
 }

@@ -1,16 +1,18 @@
-import AuthLayout from "../../pages/authLayout/AuthLayout.tsx";
-import AuthLoginPage from "../../pages/authLogin/AuthLoginPage.tsx";
 import {RouteObject} from "react-router-dom";
+import AuthLayout from "../../pages/authLayout/AuthLayout.tsx";
 
-export const router: RouteObject[] =
+export const routes: RouteObject[] =
     [{
         path: "/auth",
         element: <AuthLayout/>,
         children: [
             {
                 index: true,
-                element: <AuthLoginPage/>,
+                // element: <AuthLoginPage/>
+                lazy: async () => {
+                    const AuthLoginPage = await import("../../pages/authLogin/AuthLoginPage.tsx");
+                    return {Component: AuthLoginPage.default}
+                },
             }
         ]
-    },
-    ]
+    }]

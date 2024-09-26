@@ -1,0 +1,14 @@
+@import "../../app/variable";
+
+.headerBar {
+  padding: 0.25rem;
+  background-color: $primary;
+
+  &__flexbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+

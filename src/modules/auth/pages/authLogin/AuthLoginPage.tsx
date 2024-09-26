@@ -5,6 +5,7 @@ import {TAuthCredentials} from "./types";
 import {auth} from "./api.ts";
 import {useAppDispatch} from "../../../../app/hooks";
 import {logedIn} from "../../app/store/profileSlice.ts";
+import {useNavigate} from "react-router-dom";
 
 
 const {Title} = Typography;
@@ -12,12 +13,14 @@ const {Title} = Typography;
 const AuthLoginPage: React.FC = () => {
 
     const dispatch = useAppDispatch();
+    const navigate = useNavigate()
 
     const submitForm: FormProps<TAuthCredentials>['onFinish'] = async (formValue: TAuthCredentials) => {
         try {
             const response = await auth(formValue);
             if (response.status === 200) {
                 dispatch(logedIn(response.data));
+                navigate("/home")
             }
 
         } catch (e) {
